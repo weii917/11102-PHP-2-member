@@ -7,3 +7,4 @@ $sql = "insert into `users`(`acc`,`pw`,`name`,`email`,`address`)
                      '{$_POST['email']}','{$_POST['address']}')";
 
 $pdo->exec($sql);
+header("Location:index.php");
