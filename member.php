@@ -26,7 +26,7 @@ include_once "./include/connect.php";
             <?php
             if (isset($_SESSION['user'])) {
                 echo "歡迎光臨" . $_SESSION['user'];
-                echo "<a href='logout.php' class='btn btn-warning mx-2'> 登出 </a>";
+                echo "<a href='./api/logout.php' class='btn btn-warning mx-2'> 登出 </a>";
                 echo "<a href='member.php' class='btn btn-success mx-2'> 會員中心 </a>";
             } else {
             ?>
@@ -50,12 +50,13 @@ include_once "./include/connect.php";
             echo "</div>";
         }
 
-        $sql = "select * from users where `acc`='{$_SESSION['user']}'";
-        $user = $pdo->query($sql)->fetch();
+        // $sql = "select * from users where `acc`='{$_SESSION['user']}'";
+        // $user = $pdo->query($sql)->fetch();
+        $user = find('users',['acc'=>"{$_SESSION['user']}"]);
         ?>
 
         </pre>
-        <form action="./update.php" method="post" class="col-4 m-auto">
+        <form action="./api/update.php" method="post" class="col-4 m-auto">
             <div class="input-group">
                 <label class="col-3 input-group-text" for="">帳號:</label>
                 <input class="form-control" type="text" name="acc" id="acc" value="<?= $user['acc']; ?>">
@@ -80,7 +81,7 @@ include_once "./include/connect.php";
                 <input class="form-control" type="hidden" name="id" id="id" value="<?= $user['id']; ?>">
                 <input class="btn btn-primary mx-2 mt-3 " type="submit" value="更新">
                 <input class="btn btn-warning mx-2 mt-3" type="reset" value="重置">
-                <input class="btn btn-danger mx-2 mt-3" type="button" value="刪除" onclick="location.href='del_user.php?id=<?=$user['id'];?>'">
+                <input class="btn btn-danger mx-2 mt-3" type="button" value="刪除" onclick="location.href='./api/del_user.php?id=<?=$user['id'];?>'">
 
             </div>
         </form>

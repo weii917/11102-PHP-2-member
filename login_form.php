@@ -13,7 +13,7 @@
     <div class="container">
         <div class="w-50 mx-auto">
             <h2 class="text-center mt-5">會員登入</h2>           
-            <form class="m-auto col-6" action="login.php" method="post">
+            <form class="m-auto col-6" action="./api/login.php" method="post">
                 <?php
                     if(isset($_GET['error'])){
                         echo "<span style='color:red'>";

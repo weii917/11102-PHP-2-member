@@ -24,7 +24,7 @@ function all($table = null, $where = '')
 
             $sql .= " $where";
         }
-        echo 'all=> ' . $sql;
+        // echo 'all=> ' . $sql;
 
         $rows = $pdo->query($sql)->fetchAll();
         return $rows;
@@ -32,6 +32,28 @@ function all($table = null, $where = '')
         echo "錯誤:沒有指定的資料表名稱";
     }
 }
+// find function
+function total($table, $id)
+{
+    global $pdo;
+    $sql = "select count(`id`) from `$table`";
+
+    if (is_array($id)) {
+        foreach ($id as $col => $value) {
+            $tmp[] = "`$col`='$value'";
+        }
+        $sql .= " where " . join(" && ", $tmp);
+    } else if (is_numeric($id)) {
+        $sql .= " where `id`='$id'";
+    } else {
+        echo "錯誤:參數的資料必須是數字或陣列";
+    }
+    // echo 'find=> ' . $sql;
+    //取一筆用fetch，PDO::FETCH_ASSOC只顯示欄位，預設BOTH都顯示，NUM顯示索引
+    $row = $pdo->query($sql)->fetchColumn();
+    return $row;
+}
+
 
 // find function
 function find($table, $id)
@@ -49,7 +71,7 @@ function find($table, $id)
     } else {
         echo "錯誤:參數的資料必須是數字或陣列";
     }
-    echo 'find=> ' . $sql;
+    // echo 'find=> ' . $sql;
     //取一筆用fetch，PDO::FETCH_ASSOC只顯示欄位，預設BOTH都顯示，NUM顯示索引
     $row = $pdo->query($sql)->fetch(PDO::FETCH_ASSOC);
     return $row;
@@ -85,7 +107,7 @@ function update($table,$cols,$id){
     } else {
         echo "錯誤:參數的資料必須是數字或陣列";
     }
-    echo 'update=> ' . $sql;
+    // echo 'update=> ' . $sql;
     return $pdo->exec($sql);
 
 }
@@ -102,7 +124,7 @@ function insert($table,$values){
     
     $sql =$sql . $cols . " values ".$vals;
 
-    echo 'insert=> ' . $sql;  
+    // echo 'insert=> ' . $sql;  
 
     return $pdo->exec($sql);
 }
@@ -124,7 +146,7 @@ function del($table,$id){
     } else {
         echo "錯誤:參數的資料必須是數字或陣列";
     }
-    echo 'del=> ' . $sql;
+    // echo 'del=> ' . $sql;
      
     return $pdo->exec($sql);
 
