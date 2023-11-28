@@ -10,14 +10,7 @@ include_once "../include/db.php";
 //                          `address`='{$_POST['address']}' 
 //       where `id`='{$_POST['id']}'";
 
-$res = $User->save([
-  'id' =>"{$_POST['id']}",
-  'acc' => "{$_POST['acc']}",
-  'pw' => "{$_POST['pw']}",
-  'name' => "{$_POST['name']}",
-  'email' => "{$_POST['email']}",
-  'address' => "{$_POST['address']}"
-], "{$_POST['id']}");
+$res = $User->save($_POST);
 if ($res > 0) {
   $_SESSION['msg'] = "更新成功";
 } else {
