@@ -63,6 +63,9 @@ include_once "./include/connect.php";
 
             </div>
         </form>
+        <?php
+    include "./include/footer.php";
+    ?>
     </div>
 </body>
 
