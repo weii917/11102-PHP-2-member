@@ -13,33 +13,11 @@ include_once "./include/connect.php";
 </head>
 
 <body>
-    <header class="nav">
-        <div class="nav-item col-4"></div>
-        <div class="nav-item col-4">
-            <ul class="d-flex justify-content-evenly">
-                <li>1</li>
-                <li>2</li>
-                <li>3</li>
-            </ul>
-        </div>
-        <div class="nav-item col-4">
-            <?php
-            if (isset($_SESSION['user'])) {
-                echo "歡迎光臨" . $_SESSION['user'];
-                echo "<a href='./api/logout.php' class='btn btn-warning mx-2'> 登出 </a>";
-                echo "<a href='member.php' class='btn btn-success mx-2'> 會員中心 </a>";
-            } else {
-            ?>
-                <a href="reg.php" class="btn btn-primary mx-2">註冊</a>
-                <a href="login_form.php" class="btn btn-success mx-2">登入</a>
 
-            <?php
-            }
-            ?>
-        </div>
-
-    </header>
     <div class="container">
+        <?php
+        include "./include/header.php";
+        ?>
         <h1 class="text-center">使用者資料</h1>
         <?php
 
@@ -52,7 +30,7 @@ include_once "./include/connect.php";
 
         // $sql = "select * from users where `acc`='{$_SESSION['user']}'";
         // $user = $pdo->query($sql)->fetch();
-        $user = find('users',['acc'=>"{$_SESSION['user']}"]);
+        $user = find('users', ['acc' => "{$_SESSION['user']}"]);
         ?>
 
         </pre>
@@ -81,7 +59,7 @@ include_once "./include/connect.php";
                 <input class="form-control" type="hidden" name="id" id="id" value="<?= $user['id']; ?>">
                 <input class="btn btn-primary mx-2 mt-3 " type="submit" value="更新">
                 <input class="btn btn-warning mx-2 mt-3" type="reset" value="重置">
-                <input class="btn btn-danger mx-2 mt-3" type="button" value="刪除" onclick="location.href='./api/del_user.php?id=<?=$user['id'];?>'">
+                <input class="btn btn-danger mx-2 mt-3" type="button" value="刪除" onclick="location.href='./api/del_user.php?id=<?= $user['id']; ?>'">
 
             </div>
         </form>

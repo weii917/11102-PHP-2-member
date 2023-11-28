@@ -11,8 +11,11 @@
 
 <body>
     <div id="app" class="container">
+        <?php
+        include "./include/header.php";
+        ?>
         <h2 class="text-center">會員註冊</h2>
-        <form action="./api/add_user.php" method="post" class="col-4 m-auto"> 
+        <form action="./api/add_user.php" method="post" class="col-4 m-auto">
             <div class="input-group">
                 <label class="col-3 input-group-text" for="">帳號:</label>
                 <input class="form-control" type="text" name="acc" id="acc">
@@ -21,7 +24,7 @@
                 <label class="col-3 input-group-text" for="">密碼:</label>
                 <input class="form-control" type="password" name="pw" id="pw">
             </div>
-            <div class="input-group" >
+            <div class="input-group">
                 <label class="col-3 input-group-text" for="">姓名:</label>
                 <input class="form-control" type="text" name="name" id="name">
             </div>
