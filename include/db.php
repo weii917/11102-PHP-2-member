@@ -145,6 +145,4 @@ function dd($array)
     echo "</pre>";
 }
 
-$student = new DB('student_scores');
-$rows = $student->all();
-dd($rows);
+$User = new DB('users');

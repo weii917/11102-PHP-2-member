@@ -1,6 +1,7 @@
 <?php
 
-include_once "../include/connect.php";
+// include_once "../include/connect.php";
+include_once "../include/db.php";
 
 // $sql="update `users` set `acc`='{$_POST['acc']}',
 //                          `pw`='{$_POST['pw']}',
@@ -9,7 +10,8 @@ include_once "../include/connect.php";
 //                          `address`='{$_POST['address']}' 
 //       where `id`='{$_POST['id']}'";
 
-$res = update('users', [
+$res = $User->save([
+  'id' =>"{$_POST['id']}",
   'acc' => "{$_POST['acc']}",
   'pw' => "{$_POST['pw']}",
   'name' => "{$_POST['name']}",

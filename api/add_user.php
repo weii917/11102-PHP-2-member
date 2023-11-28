@@ -1,6 +1,6 @@
 <?php
-include_once "../include/connect.php";
-
+// include_once "../include/connect.php";
+include_once "../include/db.php";
 $acc = htmlspecialchars(trim($_POST['acc']));
 
 // $sql="insert into `users`(`acc`,`pw`,`name`,`email`,`address`) 
@@ -8,7 +8,7 @@ $acc = htmlspecialchars(trim($_POST['acc']));
 
 // $pdo->exec($sql);
 
-insert("users", [
+$User->save( [
     'acc' => "{$acc}",
     'pw' => "{$_POST['pw']}",
     'name' => "{$_POST['name']}",
